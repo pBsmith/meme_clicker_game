@@ -36,6 +36,75 @@
             </div>
         </div>
 
+        <!-- This row contains meme image and Player Stats -->
+        <div class="container">
+            <div class="row">
+                
+                <!-- Left pane has two rows, one for meme image and one for meme health -->
+                <div class="col-md-6">
+                    
+                    <!-- Section where meme appears -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <div>
+                                <img class="image" src="images/meme_1.jpg" onclick="attack(1)" name="randImage">
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <!-- Section where health bar appears -->
+                    <div class="row">
+                        
+                        <div class="col-md-4">
+                            
+                        </div>
+                        
+                        <div class="col-md-4">
+                            </br>
+                            <progress class="progress" id="health" value="8" max="8"></progress>
+                            
+                        </div>
+                        
+                        <div class="col-md-4">
+                            
+                        </div>
+
+                        </br>
+
+                    </div>
+                
+                </div> <!-- /col-md-7 -->
+
+                <div class="col-md-5">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>Kill 10 memes to level up!</h3>
+                        </div>
+                    </div>
+
+                    <hr>
+                    
+                    <!-- Display player level -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>You are a level <b><span id="level">0</span></b> meme killer.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Display player kill stats -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>You have killed <b><span id="memes_killed">0</span></b> memes!</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
     </body>
 
 </html>
