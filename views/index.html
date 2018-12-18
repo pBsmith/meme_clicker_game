@@ -15,6 +15,16 @@
                 height: 450px;
                 width: 100%;
             }
+
+            .sep {
+                border-style: solid;
+                border-color: black;
+                border-width: 5px;
+            }
+
+            .bold-text {
+                text-shadow: 2px 0 0 black, -2px 0 0 black, 0 2px 0 black, 0 -2px 0 black, 1px 1px black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black;
+            }
             
             #progress {
                 color: green;
@@ -30,7 +40,7 @@
         <!-- Jumbotron Header -->
         <div class="jumbotron jumbotron-fluid" style="background-color: #17ABF6;">
             <div class="container">
-                <h1 class="display4">
+                <h1 class="display-3 bold-text" style="font-family: Impact; color: white">
                         Meme Clicker Game
                 </h1>
             </div>
@@ -47,7 +57,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             
-                            <div>
+                            <div class="sep">
                                 <img class="image" src="images/meme_1.jpg" onclick="attack(1)" name="randImage">
                             </div>
                             
@@ -55,37 +65,34 @@
                     </div>
                     
                     <!-- Section where health bar appears -->
-                    <div class="row">
+                    <div class="row mt-3">
                         
                         <div class="col-md-4">
                             
                         </div>
                         
                         <div class="col-md-4">
-                            </br>
-                            <progress class="progress" id="health" value="8" max="8"></progress>
+    
+                            <progress class="progress" id="health" value="5" max="5"></progress>
                             
                         </div>
                         
                         <div class="col-md-4">
                             
                         </div>
-
-                        </br>
 
                     </div>
                 
-                </div> <!-- /col-md-7 -->
+                </div> <!-- /col-md-6 -->
 
-                <div class="col-md-5">
+                <div class="col-md-6 sep">
 
-                    <div class="row">
+                    <div class="row mt-3">
                         <div class="col-md-12">
-                            <h3>Kill 10 memes to level up!</h3>
+                            <h3>Kill 5 memes to level up!</h3>
+                            <hr>
                         </div>
                     </div>
-
-                    <hr>
                     
                     <!-- Display player level -->
                     <div class="row">
@@ -101,10 +108,86 @@
                         </div>
                     </div>
 
+                    <!-- Display meme health -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Meme health: <b><span id="memes_health">5</span></b></p>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
 
+        </div>
+
+        </br>
+
     </body>
+
+    <script>
+    
+        var health = document.getElementById("health");
+        var memesHealth = 5;
+        var memesKilled = 0;
+        var level = 0;
+            
+        var memeImages = new Array();
+        
+        memeImages.push("images/meme_1.jpg");
+        memeImages.push("images/meme_2.png");
+        memeImages.push("images/meme_3.png");
+        memeImages.push("images/meme_4.png");
+        memeImages.push("images/meme_5.png");
+        memeImages.push("images/meme_6.png");
+        memeImages.push("images/meme_7.png");
+        memeImages.push("images/meme_8.png");
+        memeImages.push("images/meme_9.png");
+        memeImages.push("images/meme_10.png");
+        memeImages.push("images/meme_11.png");
+        memeImages.push("images/meme_12.png");
+        memeImages.push("images/meme_13.png");
+        memeImages.push("images/meme_14.png");
+        memeImages.push("images/meme_15.png");
+        memeImages.push("images/meme_16.png");
+        memeImages.push("images/meme_17.png");
+        memeImages.push("images/meme_18.png");
+        memeImages.push("images/meme_19.png");
+        memeImages.push("images/meme_20.png");
+            
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+            
+        function randMemeImage() {
+            document.randImage.src = memeImages[getRandomInt(0, memeImages.length - 1)];
+        }
+
+        function levelUp(memesKilled) {
+            if (memesKilled % 5 == 0) {
+                level = level + 1;
+                document.getElementById("level").innerHTML = level;
+                memesHealth = memesHealth + 1;
+                document.getElementById("memes_health").innerHTML = memesHealth;
+                health.value = health.value + 1;
+                health.max = health.max + 1;
+            }
+        }
+
+        function attack(number) {
+                
+            health.value = health.value - number;
+                
+            if (health.value == 0) {
+                memesKilled = memesKilled + 1;
+                levelUp(memesKilled);
+                document.getElementById('memes_killed').innerHTML = memesKilled;
+                randMemeImage();
+                health.value = memesHealth;
+            }
+    
+        }
+    
+    </script>
 
 </html>
